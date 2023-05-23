@@ -1,0 +1,12 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+    
+    {{ pessoas.id }} - {{ pessoas.nome }}
+
+    <form action="{% url 'update' pessoas.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="nome" value="{{ pessoas.nome }}">
+        <button type="submit">UPDATE</button>
+    </form>
+
+{% endblock %}

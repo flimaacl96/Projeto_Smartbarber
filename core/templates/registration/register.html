@@ -1,0 +1,34 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+<br>
+
+<div class="container" id="cadastro_box">
+    <br>
+    <h3 style="font-family: 'Redressed', cursive;">SmartBarber's</h3><br><br>
+    <form class="form-signin" method="POST">
+        {% csrf_token %}        
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputName">Nome:</label>
+            <input class="input-group-text" type="text" name="name" id="name" style="width: 84%;">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputEmail">Email:</label>
+            <input class="input-group-text" type="email" name="username" style="width: 85%;">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputPassword">Senha:</label>
+            <input class="input-group-text" type="password" name="password" style="width: 84%;">
+        </div>        
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputPassword">Repita a Senha:</label>
+            <input class="input-group-text" type="password" name="password_conf" style="width: 40vh;">
+        </div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button class="btn btn-lg btn-outline-primary" type="submit">Cadastrar</button>             
+      </form>
+      <br>
+      <a href="{% url 'login' %}"><button class="btn btn-lg btn-outline-primary">Já tenho cadastro</button></a> 
+      
+</div>
+
+{% endblock %}

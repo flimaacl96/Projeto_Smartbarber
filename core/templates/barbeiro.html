@@ -1,0 +1,172 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+<br>
+<h3>Olá, {nome do barbeiro}</h3>
+
+<div class="container" style="display: flex;" id="container_barbeiro"><br>
+
+    <div class="container"><br>
+        <h5>Clientes agendados:</h5>
+        <table class="table" id="agendamentos_table">
+            <thead>
+                <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Serviço:</th>
+                    <th scope="col">Data:</th>
+                    <th scope="col">Horário:</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agendamento in agendamentos %}
+                <tr>
+                    <td> (NOME CLIENTE) </td>
+                    <td> {{agendamento.servico}} </td>
+                    <td> {{agendamento.data}} </td>
+                    <td> {{agendamento.horario}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container"><br>
+        <h5>Serviços que você oferece atualmente:</h5>
+        <table class="table" id="servicos_table">
+            <thead>
+                <tr>
+                    <th scope="col">Serviço</th>
+                    <th scope="col">Valor:</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servico in servicos %}
+                <tr>
+                    <td> {{ servico.servicos }} </td>
+                    <td> R${{ servico.valor }} </td>
+                    <td>
+                        <a href="{% url 'deletar_servico' servico.id %}">
+                            <button type="button" class="btn btn-outline-danger">Remover</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Cadastrar novo
+            serviço:</button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cadastrar novo serviço</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" action="{% url 'cadastrar_novo_servico' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group flex-nowrap">
+                                <div class="mb-3">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Novo Serviço: </label>
+                                        </div>
+                                        <div class="col-auto" style="width: 70%;">
+                                            <input type="text" id="novo_servico" name="novo_servico"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Valor: </label>
+                                        </div>
+                                        <div class="col-auto" style="width: 70%;">
+                                            <input type="number" id="valor" name="valor" class="form-control">
+                                        </div>
+                                        <div class="col-auto" style="width: 70%;">
+                                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+    <!-- HORARIOS -->
+    <div class="container"><br>
+        <h5>Horários que você atende:</h5>
+        <table class="table" id="horarios_table">
+            <thead>
+                <tr>
+                    <th scope="col">Horário:</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for horario in horarios %}
+                <tr>
+                    <td> {{ horario.horarios }} </td>
+                    <td>
+                        <a href="{% url 'deletar_horario' horario.id %}">
+                            <button type="button" class="btn btn-outline-danger">Remover</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#Modal_Horario">Cadastrar
+            novo
+            horário:</button>
+
+
+        <div class="modal fade" id="Modal_Horario" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cadastrar novo horário</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" action="{% url 'cadastrar_novo_horario' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group flex-nowrap">
+                                <div class="mb-3">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Novo Horário: </label>
+                                        </div>
+                                        <div class="col-auto" style="width: 70%;">
+                                            <input type="time" id="novo_horario" name="novo_horario"
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-auto" style="width: 70%;">
+                                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

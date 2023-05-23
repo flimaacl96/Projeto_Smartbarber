@@ -1,0 +1,24 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+<br>
+
+<div class="container" id="login_box">
+    <br>
+    <h3 style="font-family: 'Redressed', cursive;">SmartBarber's</h3><br><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal"></h1>
+        <div class="input-group mb-3">
+            <label class="input-group-text">Email:</label>
+            <input class="input-group-text" type="username" name="username" style="width: 85%;">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text">Senha:</label>
+            <input class="input-group-text" type="password" name="password" style="width: 84%;">
+        </div>
+        <button class="btn btn-lg btn-outline-primary" type="submit">Login</button>
+        <a href="{% url 'register' %}"><button class="btn btn-lg btn-outline-primary btn-block" type="button">Cadastre-se</button></a>
+      </form>
+</div>
+
+{% endblock %}

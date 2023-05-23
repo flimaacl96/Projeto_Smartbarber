@@ -1,0 +1,34 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+{% load static %}
+<br>
+<h4 style="color: #ffffff;">Olá, {{user.first_name}} <br>
+    esses são os seus agendamentos atuais:
+</h4>
+<div class="container" id="meusAgendamentos_box">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for agendamento in agendamentos %}
+        <div class="col">
+            <div class="card" id="card_agendamento">
+                <img src="{% static 'img/barbeiro.png' %}" class="card-img-top" alt="..." id="img_agendamento">
+                <div class="card-body">
+                    <p class="card-text"><b> Servico:</b> <span> {{agendamento.servico}} </span></p>
+                    <p class="card-text"><b> Valor:</b> <span> {{agendamento.valor}} </span></p>
+                    <p class="card-text"><b> Data:</b> <span> {{agendamento.data}} </span></p>
+                    <p class="card-text"><b> Horário:</b> <span> {{agendamento.horario}} </span></p>
+                    <a href="{% url 'editar' agendamento.id %}"><button class="btn btn-outline-primary"><i
+                                class="bi bi-pencil-square"></i>Editar</button>
+                    </a>
+
+                    <a href="{% url 'delete' agendamento.id %}"><button type="button" class="btn btn-outline-danger"><i
+                                class="bi bi-trash"></i>Cancelar</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

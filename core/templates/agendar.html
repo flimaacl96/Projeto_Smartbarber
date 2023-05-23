@@ -1,0 +1,59 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+<br>
+
+<div class="container" id="agendar_box">
+    <span>SELECIONE:</span><br><br>
+    <form class="form-signin" action="{% url 'salvar' %}" method="post">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal"></h1>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Serviço:</label>
+            <select class="form-select" id="inputGroupSelect01" name="servico" required="true">
+                <option selected>(selecione)</option>
+                {% for servico in servicos %}                
+                <option value="{{ servico.servicos }}"> {{ servico.servicos }} - R$ {{ servico.valor }} </option>           
+                {% endfor %}            
+            </select>
+                
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Data:</label>
+            <input class="input-group-text" type="date" name="data" id="data" required="true">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Horário:</label>
+            <select class="form-select" id="" name="horario" required="true">
+                <option selected>(selecione)</option>
+                {% for horario in horarios %}
+                <option value="{{ horario.horarios }}"> {{ horario.horarios }} hs </option>
+                {% endfor %}            
+            </select>
+        </div>
+        <div class="checkbox mb-3">
+        </div>
+        <button class="btn btn-outline-primary" type="submit">Agendar</button>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+        var dtToday = new Date();
+     
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+         day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#data').attr('min', maxDate);
+    });
+    </script>
+
+
+
+
+{% endblock %}

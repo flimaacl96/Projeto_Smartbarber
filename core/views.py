@@ -87,6 +87,12 @@ def barbeiro(request):
     varAgendamentos = Agendamento.objects.all()
     return render(request, "barbeiro.html", {"servicos" : varServicos , "horarios" : varHorarios, "agendamentos" : varAgendamentos})    
 
+def clientesAgendados(request):
+    varServicos = Servicos.objects.all()
+    varHorarios = Horarios.objects.all()
+    varAgendamentos = Agendamento.objects.all()
+    return render(request, "clientesAgendados.html", {"servicos" : varServicos , "horarios" : varHorarios, "agendamentos" : varAgendamentos})
+
 def cadastrar_novo_servico(request):
     varNovo_Servico = request.POST.get("novo_servico")
     varValor = request.POST.get("valor")

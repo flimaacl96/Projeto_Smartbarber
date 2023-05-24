@@ -1,35 +1,8 @@
 {% extends 'template_base.html' %}
 {% block conteudo %}
 <br>
-<h3>Olá, {nome do barbeiro}</h3>
-
+<h3 style="color: white;">Olá, {{user.first_name}}</h3>
 <div class="container" style="display: flex;" id="container_barbeiro"><br>
-
-    <div class="container"><br>
-        <h5>Clientes agendados:</h5>
-        <table class="table" id="agendamentos_table">
-            <thead>
-                <tr>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Serviço:</th>
-                    <th scope="col">Data:</th>
-                    <th scope="col">Horário:</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for agendamento in agendamentos %}
-                <tr>
-                    <td> (NOME CLIENTE) </td>
-                    <td> {{agendamento.servico}} </td>
-                    <td> {{agendamento.data}} </td>
-                    <td> {{agendamento.horario}} </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
     <div class="container"><br>
         <h5>Serviços que você oferece atualmente:</h5>
         <table class="table" id="servicos_table">
@@ -47,7 +20,7 @@
                     <td> R${{ servico.valor }} </td>
                     <td>
                         <a href="{% url 'deletar_servico' servico.id %}">
-                            <button type="button" class="btn btn-outline-danger">Remover</button>
+                            <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
                         </a>
                     </td>
                 </tr>
@@ -114,10 +87,10 @@
             <tbody>
                 {% for horario in horarios %}
                 <tr>
-                    <td> {{ horario.horarios }} </td>
+                    <td> {{ horario.horarios }} hs</td>
                     <td>
                         <a href="{% url 'deletar_horario' horario.id %}">
-                            <button type="button" class="btn btn-outline-danger">Remover</button>
+                            <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
                         </a>
                     </td>
                 </tr>

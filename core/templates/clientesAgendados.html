@@ -1,0 +1,32 @@
+{% extends 'template_base.html' %}
+{% block conteudo %}
+<br>
+<h3 style="color: white;">Olá, {{user.first_name}}</h3>
+
+<div class="container" id="container_clientes">
+    <h5>Clientes agendados:</h5>
+    <table class="table" id="agendamentos_table">
+        <thead>
+            <tr>
+                <th scope="col">Cliente</th>
+                <th scope="col">Serviço:</th>
+                <th scope="col">Data:</th>
+                <th scope="col">Horário:</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agendamento in agendamentos %}
+            <tr>
+                <td> {{user.first_name}}</td>
+                <td> {{agendamento.servico}} </td>
+                <td> {{agendamento.data}} </td>
+                <td> {{agendamento.horario}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

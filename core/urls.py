@@ -14,6 +14,7 @@ urlpatterns = [
     path('about', views.about, name="about"),
     path('agendar/', views.agendar, name="agendar"),
     path('meusAgendamentos/', views.meusAgendamentos, name="meusAgendamentos"),
+    path('clientesAgendados/', views.clientesAgendados, name="clientesAgendados"),
     path('salvar/', views.salvar, name="salvar"),
     path('editar/<int:id>', views.editar, name="editar"),
     path('update/<int:id>', views.update, name='update'),

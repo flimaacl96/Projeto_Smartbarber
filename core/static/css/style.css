@@ -124,19 +124,24 @@ html {
 }
 
 #servicos_table{
-    width: auto;    
+    
 }
 
 #horarios_table{
-    width: auto;
+   
 }
 
 #agendamentos_table{
-    width: auto;
-    border-right: 2px solid gray;
+    width: 100%;
+    
 }
 
 #container_barbeiro{
+    background-color: rgba(255,255,255, 1);
+    border-radius: 25px;
+}
+
+#container_clientes{
     background-color: rgba(255,255,255, 1);
     border-radius: 25px;
 }
